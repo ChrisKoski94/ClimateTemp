@@ -1,8 +1,12 @@
 # streamlit_app.py
 import streamlit as st
-from pages.home import home_page
-from pages.project_breakdown import project_breakdown_page
-from pages.other_page import other_page
+
+try:
+    from pages.home import home_page
+    from pages.project_breakdown import project_breakdown_page
+    from pages.other_page import other_page
+except ModuleNotFoundError as e:
+    print(f"ModuleNotFoundError: {e}")
 
 def main():
     st.title("Climate Insights: A Comprehensive Analysis of Global Temperature Trends and Future Projections")
@@ -23,3 +27,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
