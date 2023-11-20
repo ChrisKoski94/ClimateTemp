@@ -1,5 +1,8 @@
 # streamlit_app.py
 import streamlit as st
+from pages.home import home_page
+from pages.project_breakdown import project_breakdown_page
+from pages.other_page import other_page
 
 def main():
     st.title("Climate Insights: A Comprehensive Analysis of Global Temperature Trends and Future Projections")
@@ -8,33 +11,19 @@ def main():
     image_path = "data/_a12672b9-08f6-45e7-99f5-dad7c20210aa.jpg"
     st.image(image_path, use_column_width=True)
 
-    # Add a link to the Project Breakdown page
-    st.sidebar.markdown("[Project Breakdown](#project-breakdown)")
+    # Add a link to different pages in the sidebar
+    page = st.sidebar.radio("Navigate", ["Home", "Project Breakdown", "Other Page"])
 
-def project_breakdown():
-    st.title("Project Breakdown")
-
-    # Text for the breakdown
-    breakdown_text = """
-    **Chris Kowalski**
-    Report 1 - Exploration, data visualization, and data pre-processing report
-
-    **Betsi Flores**
-    Report 2 – Modeling Report
-
-    **Maroun Hleihel**
-    Report 3 - Challenges and Insights in Climate Modeling
-    """
-
-    st.markdown(breakdown_text)
+    if page == "Home":
+        home_page()
+    elif page == "Project Breakdown":
+        project_breakdown_page()
+    elif page == "Other Page":
+        other_page()
 
 if __name__ == "__main__":
-    # Check for page selection
-    pages = {"Home": main, "Project Breakdown": project_breakdown}
-    selection = st.sidebar.radio("Navigate", list(pages.keys()))
+    main()
 
-    # Run the selected page
-    pages[selection]()
 
 
 
